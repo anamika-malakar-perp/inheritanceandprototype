@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3 style="text-align:center;">Questions related to inheritance & prototype</h3>
+    <h5>
+        1.Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype
+    </h5>
+    <pre>
+        parentObj = {
+            calAge: function() {
+                console.log(`${this.name} ${this.age}`)
+            }
+        }
+        
+        let childObj = Object.create(parentObj);
+        
+        childObj.name = 'Anamika';
+        childObj.age = 12;
+        
+        childObj.calAge();
+    </pre>
+    
+    <h5>2.Write code to explain prototype chaining</h5>
+    <pre>
+        let grandfather = {
+            age: 70,
+            location: 'Hyderabad'
+        }
+        
+        const father = Object.create(grandfather);
+        
+        father.name = 'John';
+        
+        console.log(father.name);
+        console.log(father.age);  // father object don't have prototype age but it can access grandfather object prototype beacuse of prototype chaining
+    </pre>
+
+    <h5>3.Add a method to calculate sum of all elements in Array in array's protype, use that method to calculate sum for multiple arrays</h5>
+    <pre>
+        parentObj = {
+            sum: function(arr) {
+                let sum = 0;
+                for(let i = 0;i< arr.length;i++) {
+                    sum += arr[i];
+                }
+                console.log(sum);
+            }
+        }
+        
+        let childObj = Object.create(parentObj);
+        childObj.sum([1, 2, 3, 4, 5]);
+        childObj.sum([3, 4, 5, 6, 7])
+    </pre>
+
+    <h5>4.Write a JavaScript function to retrieve all the names of object's own and inherited properties.</h5>
+
+    <pre>
+        function retriveOwnProperties(user) {
+            return Object.keys(user);
+        }
+        
+        function inheritetedProperties(user) {
+            return user.toString();
+        }
+        
+        const user = {
+            name: 'Alex',
+            age: 30
+        }
+        
+        console.log(retriveOwnProperties(user));
+        console.log(inheritetedProperties(user));
+    </pre>
+    <script src="./index.js"></script>
+</body>
+</html>
